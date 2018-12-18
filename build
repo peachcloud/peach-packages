@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ARCH=${1}
+OUTPUT=output
+
+debian-package-builder --docker --target base --arch "${ARCH}" --input packages/peach-base --output "${OUTPUT}"
