@@ -31,10 +31,8 @@ to build for a specific architecture:
 npm run build:amd64
 ```
 
-```shell
-npm run build:armhf
-```
+to build for a specific package
 
-```shell
-npm run build:arm64
+```
+npm run build:amd64 -- peach-ssb-server
 ```

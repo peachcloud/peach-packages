@@ -1,6 +1,13 @@
 #!/bin/bash
 
-ARCH=${1}
+ARCH="${1}"
 OUTPUT=output
+PACKAGE="${2}"
 
-debian-package-builder --docker --target base --arch "${ARCH}" --input packages/peach-base --output "${OUTPUT}"
+if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-base" ]; then
+  debian-package-builder --docker --target base --arch "${ARCH}" --input packages/peach-base --output "${OUTPUT}"
+fi
+
+if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-ssb-server" ]; then
+  debian-package-builder --docker --target nodejs --arch "${ARCH}" --input packages/peach-ssb-server --output "${OUTPUT}"
+fi
