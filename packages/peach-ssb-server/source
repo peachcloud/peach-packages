@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NAME=peach-ssb-server-js
+
+# VERSION=1.1.1
+# curl -L "https://github.com/peachcloud/${NAME}/archive/v${VERSION}.tar.gz" | tar xz "${NAME}-${VERSION}" --strip-components=1
+
+BRANCH=bb849bd1bc8c33c43289072fab22738c3ef07860
+curl -L "https://github.com/peachcloud/${NAME}/archive/${BRANCH}.tar.gz" | tar xz "${NAME}-${BRANCH}" --strip-components=1
