@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+# DNS hosts
+db_input high sftdyn-server/hosts || true
+db_go
+
+#DEBHELPER#

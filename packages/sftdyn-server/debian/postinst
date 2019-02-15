@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+# saner programming env: these switches turn some bugs into errors
+set -o errexit -o pipefail -o noclobber
+
+db_get sftdyn-server/hosts
+HOSTS=$RET
+
+cp /usr/lib/sftdyn-server/conf /etc/sftdyn/conf
+
+touch /etc/sftdyn/clients
+
+if [ "$HOSTS" ]
+then
+  cp "/usr/lib/sftdyn-server/nginx.conf.template" "/etc/nginx/sites-available/sftdyn.conf"
+  sed -i -e "s/SERVER_NAME/${HOSTS}/" "/etc/nginx/sites-available/sftdyn.conf"
+
+  if [ ! -e "/etc/nginx/sites-enabled/sftdyn.conf" ]
+  then
+    ln -s "/etc/nginx/sites-available/sftdyn.conf" "/etc/nginx/sites-enabled/sftdyn.conf"
+  fi
+
+  echo "// BEGIN SFTDYN CONFIG" >> /etc/bind/named.conf.local
+  IFS=' '
+  for HOST in $HOSTS
+  do
+    cp /etc/bind/db.empty /etc/bind/${HOST}.zone
+    cat >> /etc/bind/named.conf.local <<EOF
+zone "${HOST}" IN {
+  type master;
+  file "/etc/bind/${HOST}.zone";
+  journal "/var/cache/bind/${HOST}.zone.jnl";
+  update-policy local;
+};
+EOF
+  done
+  unset IFS
+  echo "// END SFTDYN CONFIG" >> /etc/bind/named.conf.local
+fi
+
+systemctl enable --now bind9
+systemctl reload nginx
+
+#DEBHELPER#

@@ -1,0 +1,5 @@
+Template: sftdyn-server/hosts
+Type: string
+Description: What DNS zone are you hosting?
+ If you have multiple hosts, separate them by space.
+ e.g. dyn.sft.net dyn.sft.com

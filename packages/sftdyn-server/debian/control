@@ -1,0 +1,26 @@
+Source: sftdyn-server
+Section: net
+Priority: optional
+Maintainer: "Michael Williams" <michael.williams@enspiral.com>
+Build-Depends:
+  debhelper (>=9~)
+  , dh-python
+  , python3-all
+  , python3-setuptools
+  , python3-aiohttp
+Standards-Version: 4.1.4
+
+Package: sftdyn-server
+Architecture: any
+Depends:
+  ${misc:Depends}
+  , bind9
+  , dnsutils
+  , nginx
+  , python3
+  , python3-aiohttp
+Description: HTTP(S)-based dynamic DNS updater server.
+  Provides dyndns.org-like service that accepts update requests
+  via HTTP(S) and forwards them to a locally running
+  DNS server via nsupdate -l. Works with most routers.
+  Readme: https://github.com/SFTtech/sftdyn/blob/master/README.md

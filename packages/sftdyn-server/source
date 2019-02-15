@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ORG=SFTtech
+NAME=sftdyn
+VERSION=0.9
+
+curl -L "https://github.com/${ORG}/${NAME}/archive/v${VERSION}.tar.gz" | tar xz "${NAME}-${VERSION}" --strip-components=1

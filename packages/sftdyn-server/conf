@@ -1,0 +1,39 @@
+# SFTdyn configuration file
+#
+# may be a .conf, but is actually a .py
+
+http = "8181"
+
+clients = dict(l.strip().split(':') for l in open('/etc/sftdyn/clients').read().split('\n') if l)
+
+# ----------------------------------------------------------------------------
+def nsupdatecommands(host, new_ip, headers):
+    """
+    Return the lines fed into `nsupdate`'s stdin.
+    Here you can, for example, customize the TTL (default 30s).
+    """
+
+    if 'X-Real-IP' in headers:
+        new_ip = headers['X-Real-IP']
+
+    import ipaddress
+    new_ip = ipaddress.ip_address(new_ip)
+
+    if isinstance(new_ip, ipaddress.IPv4Address):
+        cmds = [
+            "update delete %s A" % host,
+            "update add %s 30 A %s" % (host, new_ip),
+            "send",
+        ]
+
+    else:
+        cmds = [
+            "update delete %s AAAA" % host,
+            "update add %s 30 AAAA %s" % (host, new_ip),
+            "send",
+        ]
+
+    return cmds
+
+
+# vim: ft=python
