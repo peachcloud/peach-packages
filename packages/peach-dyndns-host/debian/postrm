@@ -6,28 +6,29 @@
 # saner programming env: these switches turn some bugs into errors
 set -o errexit -o pipefail -o noclobber
 
-db_get sftdyn-server/hosts
+db_get peach-dyndns-host/hosts
 HOSTS=$RET
 
 if [ "$1" = "remove" ]
-then
-  if [ -e "/etc/nginx/sites-enabled/sftdyn.conf" ]
-  then
-    rm "/etc/nginx/sites-enabled/sftdyn.conf"
-  fi
-  systemctl reload nginx
-fi
-
-if [ "$1" = "purge" ]
 then
   if [ -e "/etc/sftdyn/conf" ]
   then
     rm "/etc/sftdyn/conf"
   fi
 
-  if [ -e "/etc/sftdyn/clients" ]
+  if [ -e "/etc/nginx/sites-enabled/sftdyn.conf" ]
   then
-    rm "/etc/sftdyn/clients"
+    rm "/etc/nginx/sites-enabled/sftdyn.conf"
+  fi
+
+  systemctl reload nginx
+fi
+
+if [ "$1" = "purge" ]
+then
+  if [ -e "/etc/peach/dyndns/host/clients" ]
+  then
+    rm -r "/etc/peach/dyndns/host/clients"
   fi
 
   if [ -e "/etc/nginx/sites-available/sftdyn.conf" ]

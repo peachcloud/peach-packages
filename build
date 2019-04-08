@@ -12,6 +12,6 @@ if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-ssb-server" ]; then
   debian-package-builder --docker --target nodejs --arch "${ARCH}" --input packages/peach-ssb-server --output "${OUTPUT}"
 fi
 
-if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "sftdyn-server" ]; then
-  debian-package-builder --docker --target python --arch "${ARCH}" --input packages/sftdyn-server --output "${OUTPUT}" --debian-release stretch
+if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-dyndns-host" ]; then
+  debian-package-builder --docker --target python --arch "${ARCH}" --input packages/peach-dyndns-host --output "${OUTPUT}" --debian-release stretch
 fi

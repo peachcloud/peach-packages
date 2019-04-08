@@ -1,10 +1,10 @@
 [Unit]
-Description=sft dynamic dns service
+Description=PeachCloud dynamic DNS service using SFTDyn
 After=network.target
 
 [Service]
 User=bind
-ExecStart=/usr/bin/env python3 -u -m sftdyn -v
+ExecStart=/usr/bin/env python3 -u -m sftdyn -v 
 Restart=on-failure
 
 [Install]

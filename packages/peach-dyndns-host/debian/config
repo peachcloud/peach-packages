@@ -4,7 +4,7 @@
 . /usr/share/debconf/confmodule
 
 # DNS hosts
-db_input high sftdyn-server/hosts || true
+db_input high peach-dyndns-host/hosts || true
 db_go
 
 #DEBHELPER#

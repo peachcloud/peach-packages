@@ -1,10 +1,20 @@
 # SFTdyn configuration file
 #
 # may be a .conf, but is actually a .py
+#
 
 http = "8181"
 
-clients = dict(l.strip().split(':') for l in open('/etc/sftdyn/clients').read().split('\n') if l)
+from os import listdir
+from os.path import basename, join, isfile
+clients = dict()
+clients_dir = '/etc/peach/dyndns/host/clients'
+client_paths = [join(clients_dir, path) for path in listdir(clients_dir) if isfile(join(clients_dir, path))]
+for client_path in client_paths:
+  with open(client_path) as client_file:
+    client_domain = basename(client_path)
+    client_secret = client_file.read().strip()
+    clients[client_secret] = client_domain
 
 # ----------------------------------------------------------------------------
 def nsupdatecommands(host, new_ip, headers):

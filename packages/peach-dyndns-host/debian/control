@@ -1,4 +1,4 @@
-Source: sftdyn-server
+Source: peach-dyndns-host
 Section: net
 Priority: optional
 Maintainer: "Michael Williams" <michael.williams@enspiral.com>
@@ -10,7 +10,7 @@ Build-Depends:
   , python3-aiohttp
 Standards-Version: 4.1.4
 
-Package: sftdyn-server
+Package: peach-dyndns-host
 Architecture: any
 Depends:
   ${misc:Depends}

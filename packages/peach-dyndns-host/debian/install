@@ -1,0 +1,3 @@
+cli usr/lib/peach-dyndns-host
+conf usr/lib/peach-dyndns-host
+nginx.conf.template usr/lib/peach-dyndns-host

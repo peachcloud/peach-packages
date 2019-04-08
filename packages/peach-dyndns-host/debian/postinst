@@ -6,16 +6,17 @@
 # saner programming env: these switches turn some bugs into errors
 set -o errexit -o pipefail -o noclobber
 
-db_get sftdyn-server/hosts
+db_get peach-dyndns-host/hosts
 HOSTS=$RET
 
-cp /usr/lib/sftdyn-server/conf /etc/sftdyn/conf
+mkdir -p /etc/sftdyn
+cp /usr/lib/peach-dyndns-host/conf /etc/sftdyn/conf
 
-touch /etc/sftdyn/clients
+mkdir -p /etc/peach/dyndns/host/clients
 
 if [ "$HOSTS" ]
 then
-  cp "/usr/lib/sftdyn-server/nginx.conf.template" "/etc/nginx/sites-available/sftdyn.conf"
+  cp "/usr/lib/peach-dyndns-host/nginx.conf.template" "/etc/nginx/sites-available/sftdyn.conf"
   sed -i -e "s/SERVER_NAME/${HOSTS}/" "/etc/nginx/sites-available/sftdyn.conf"
 
   if [ ! -e "/etc/nginx/sites-enabled/sftdyn.conf" ]

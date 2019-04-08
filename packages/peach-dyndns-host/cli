@@ -1,0 +1,25 @@
+#!/bin/bash
+
+COMMAND=$1
+
+case ${COMMAND} in
+  "add")
+    DOMAIN=$2
+    SECRET=$3
+    echo "${SECRET}" > "/etc/peach/dyndns/host/clients/${DOMAIN}"
+    systemctl restart peach-dyndns-host
+    ;;
+  "remove")
+    DOMAIN=$2
+    rm "/etc/peach/dyndns/host/clients/${DOMAIN}"
+    ;;
+  *)
+    echo 'Usage: peach-dyndns-host ${COMMAND} ${...ARGS}'
+    echo ''
+    echo 'Commands:'
+    echo '  - add ${DOMAIN} ${SECRET}'
+    echo '  - remove ${DOMAIN}'
+    echo
+    exit 1
+    ;;
+esac
