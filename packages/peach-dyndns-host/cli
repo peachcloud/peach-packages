@@ -6,12 +6,13 @@ case ${COMMAND} in
   "add")
     DOMAIN=$2
     SECRET=$3
-    echo "${SECRET}" > "/etc/peach/dyndns/host/clients/${DOMAIN}"
+    echo "${SECRET}" > "/etc/peach/dyndns/host/guests/${DOMAIN}"
+    chown peach:peach "/etc/peach/dyndns/host/guests/${DOMAIN}"
     systemctl restart peach-dyndns-host
     ;;
   "remove")
     DOMAIN=$2
-    rm "/etc/peach/dyndns/host/clients/${DOMAIN}"
+    rm "/etc/peach/dyndns/host/guests/${DOMAIN}"
     ;;
   *)
     echo 'Usage: peach-dyndns-host ${COMMAND} ${...ARGS}'

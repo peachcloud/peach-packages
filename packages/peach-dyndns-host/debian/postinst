@@ -12,7 +12,8 @@ HOSTS=$RET
 mkdir -p /etc/sftdyn
 cp /usr/lib/peach-dyndns-host/conf /etc/sftdyn/conf
 
-mkdir -p /etc/peach/dyndns/host/clients
+mkdir -p /etc/peach/dyndns/host/guests
+chown -R peach:peach /etc/peach
 
 if [ "$HOSTS" ]
 then

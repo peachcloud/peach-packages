@@ -7,14 +7,15 @@ http = "8181"
 
 from os import listdir
 from os.path import basename, join, isfile
-clients = dict()
-clients_dir = '/etc/peach/dyndns/host/clients'
-client_paths = [join(clients_dir, path) for path in listdir(clients_dir) if isfile(join(clients_dir, path))]
-for client_path in client_paths:
-  with open(client_path) as client_file:
-    client_domain = basename(client_path)
-    client_secret = client_file.read().strip()
-    clients[client_secret] = client_domain
+guests = dict()
+guests_dir = '/etc/peach/dyndns/host/guests'
+guest_paths = [join(guests_dir, path) for path in listdir(guests_dir) if isfile(join(guests_dir, path))]
+for guest_path in guest_paths:
+  with open(guest_path) as guest_file:
+    guest_domain = basename(guest_path)
+    guest_secret = guest_file.read().strip()
+    guests[guest_secret] = guest_domain
+clients = guests
 
 # ----------------------------------------------------------------------------
 def nsupdatecommands(host, new_ip, headers):

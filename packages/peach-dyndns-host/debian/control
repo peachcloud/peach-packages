@@ -14,6 +14,7 @@ Package: peach-dyndns-host
 Architecture: any
 Depends:
   ${misc:Depends}
+  , peach-base
   , bind9
   , dnsutils
   , nginx
