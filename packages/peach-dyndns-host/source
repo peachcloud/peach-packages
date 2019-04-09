@@ -1,7 +1,10 @@
 #!/bin/sh
 
-ORG=SFTtech
+ORG=peachcloud
 NAME=sftdyn
-VERSION=0.9
 
-curl -L "https://github.com/${ORG}/${NAME}/archive/v${VERSION}.tar.gz" | tar xz "${NAME}-${VERSION}" --strip-components=1
+# VERSION=0.9
+# curl -L "https://github.com/${ORG}/${NAME}/archive/v${VERSION}.tar.gz" | tar xz "${NAME}-${VERSION}" --strip-components=1
+
+BRANCH=master
+curl -L "https://github.com/${ORG}/${NAME}/archive/${BRANCH}.tar.gz" | tar xz "${NAME}-${BRANCH}" --strip-components=1
