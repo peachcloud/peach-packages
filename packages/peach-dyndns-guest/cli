@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# saner programming env: these switches turn some bugs into errors
+set -o errexit -o pipefail -o noclobber
+
+COMMAND=$1
+
+function update {
+  HOST=$1
+  SECRET=$(echo -n "$(cat /etc/peach/dyndns/guest/hosts/${HOST})")
+  RESPONSE=$(curl -S -s ${HOST}/${SECRET})
+  echo "${HOST} : ${RESPONSE}"
+}
+
+case ${COMMAND} in
+  "update")
+    HOST=$2
+    if [ "${HOST}" == "" ]; then
+      for HOST in $(ls /etc/peach/dyndns/guest/hosts); do
+        update "${HOST}"
+      done
+    else
+      update "${HOST}"
+    fi
+    ;;
+  "list-hosts")
+    ls /etc/peach/dyndns/guest/hosts
+    ;;
+  "add-host")
+    HOST=$2
+    SECRET=$3
+    echo "${SECRET}" > "/etc/peach/dyndns/guest/hosts/${HOST}"
+    chown peach:peach "/etc/peach/dyndns/guest/hosts/${HOST}"
+    ;;
+  "remove-host")
+    HOST=$2
+    rm "/etc/peach/dyndns/guest/hosts/${HOST}"
+    ;;
+  *)
+    echo 'Usage: peach-dyndns-guest ${COMMAND} ${...ARGS}'
+    echo ''
+    echo 'Commands:'
+    echo '  - update'
+    echo '  - update ${HOST}'
+    echo '  - list-hosts'
+    echo '  - add-host ${HOST} ${SECRET}'
+    echo '  - remove-host ${HOST}'
+    echo
+    exit 1
+    ;;
+esac

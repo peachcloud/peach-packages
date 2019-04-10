@@ -1,0 +1,47 @@
+# SFTdyn configuration file
+#
+# may be a .conf, but is actually a .py
+#
+
+http = "8181"
+
+from os import listdir
+from os.path import basename, join, isfile
+guests = dict()
+guests_dir = '/etc/peach/dyndns/host/guests'
+guest_paths = [join(guests_dir, path) for path in listdir(guests_dir) if isfile(join(guests_dir, path))]
+for guest_path in guest_paths:
+  with open(guest_path) as guest_file:
+    guest_domain = basename(guest_path)
+    guest_secret = guest_file.read().strip()
+    guests[guest_secret] = guest_domain
+clients = guests
+
+# ----------------------------------------------------------------------------
+def nsupdatecommands(host, new_ip, headers):
+    """
+    Return the lines fed into `nsupdate`'s stdin.
+    Here you can, for example, customize the TTL (default 30s).
+    """
+
+    import ipaddress
+    new_ip = ipaddress.ip_address(new_ip)
+
+    if isinstance(new_ip, ipaddress.IPv4Address):
+        cmds = [
+            "update delete %s A" % host,
+            "update add %s 30 A %s" % (host, new_ip),
+            "send",
+        ]
+
+    else:
+        cmds = [
+            "update delete %s AAAA" % host,
+            "update add %s 30 AAAA %s" % (host, new_ip),
+            "send",
+        ]
+
+    return cmds
+
+
+# vim: ft=python

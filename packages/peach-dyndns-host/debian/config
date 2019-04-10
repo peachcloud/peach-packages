@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+# DNS hosts
+db_input high peach-dyndns-host/hosts || true
+db_go
+
+#DEBHELPER#

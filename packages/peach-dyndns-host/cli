@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# saner programming env: these switches turn some bugs into errors
+set -o errexit -o pipefail -o noclobber
+
+COMMAND=$1
+
+case ${COMMAND} in
+  "add-guest")
+    DOMAIN=$2
+    SECRET=$3
+    echo "${SECRET}" > "/etc/peach/dyndns/host/guests/${DOMAIN}"
+    chown peach:peach "/etc/peach/dyndns/host/guests/${DOMAIN}"
+    systemctl restart peach-dyndns-host
+    ;;
+  "remove-guest")
+    DOMAIN=$2
+    rm "/etc/peach/dyndns/host/guests/${DOMAIN}"
+    ;;
+  *)
+    echo 'Usage: peach-dyndns-host ${COMMAND} ${...ARGS}'
+    echo ''
+    echo 'Commands:'
+    echo '  - add-guest ${DOMAIN} ${SECRET}'
+    echo '  - remove-guest ${DOMAIN}'
+    echo
+    exit 1
+    ;;
+esac

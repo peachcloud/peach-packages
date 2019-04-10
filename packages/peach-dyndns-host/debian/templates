@@ -1,0 +1,5 @@
+Template: peach-dyndns-host/hosts
+Type: string
+Description: What DNS zone are you hosting?
+ If you have multiple hosts, separate them by space.
+ e.g. dyn.peach.net dyn.peach.com

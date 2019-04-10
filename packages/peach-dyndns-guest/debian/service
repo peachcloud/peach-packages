@@ -1,0 +1,7 @@
+[Unit]
+Description=PeachCloud dynamic DNS update
+
+[Service]
+Type=oneshot
+User=peach
+ExecStart=/usr/bin/peach-dyndns-guest update
