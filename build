@@ -21,3 +21,7 @@ fi
 if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-dyndns-host" ]; then
   debian-package-builder --docker --target python --arch "${ARCH}" --input packages/peach-dyndns-host --output "${OUTPUT}" --debian-release ${DEBIAN_RELEASE}
 fi
+
+if [ "${PACKAGE}" == "" ] || [ "${PACKAGE}" == "peach-dyndns-guest" ]; then
+  debian-package-builder --docker --target base --arch "${ARCH}" --input packages/peach-dyndns-guest --output "${OUTPUT}" --debian-release ${DEBIAN_RELEASE}
+fi

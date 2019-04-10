@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: "Michael Williams" <michael.williams@enspiral.com>
 Build-Depends:
-  debhelper (>=9~)
+  debhelper (>=11~)
   , dh-python
   , python3-all
   , python3-setuptools
