@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# saner programming env: these switches turn some bugs into errors
+set -o errexit -o pipefail -o noclobber
+
+upnpc -e 'Scuttlebutt on PeachCloud' -r 8008 TCP
