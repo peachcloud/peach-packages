@@ -1,0 +1,7 @@
+[Unit]
+Description=PeachCloud UPnP update
+
+[Service]
+Type=oneshot
+User=peach
+ExecStart=/usr/bin/peach-upnp

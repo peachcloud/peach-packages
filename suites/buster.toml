@@ -1,0 +1,17 @@
+archive = "buster"
+version = "10"
+origin = "peachcloud"
+label = "PeachCloud"
+email = "hello@peachcloud.org"
+
+# https://github.com/system76/cuda/blob/master/suites/bionic.toml
+
+[[source]]
+name = "peach-upnp"
+build_on = "changelog"
+assets = [
+   # { src = "cargo_makefile", dst = "Makefile" }
+]
+
+  [source.location]
+  git = "git://github.com/peachcloud/peach-upnp"

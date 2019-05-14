@@ -1,0 +1,16 @@
+Source: peach-upnp
+Section: net
+Priority: optional
+Maintainer: "Michael Williams" <michael.williams@enspiral.com>
+Build-Depends:
+  debhelper (>=11~),
+  cargo
+Standards-Version: 4.1.4
+
+Package: peach-upnp
+Architecture: any
+Depends:
+  ${misc:Depends}
+  , peach-base
+  , miniupnpc
+Description: Use Universal Plug and Play (UPnP) to expose your Peach device to the internet via your router.

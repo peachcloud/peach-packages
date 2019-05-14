@@ -1,3 +1,10 @@
 node_modules
 npm-debug.log*
 /output
+assets/cache
+assets/packages/
+build
+record
+repo
+sources
+logs

@@ -14,13 +14,19 @@ Debian packages for PeachCloud
 ```shell
 git clone git@github.com:peachcloud/peach-packages
 cd peach-packages
-npm install
+
+sudo apt install sbuild
+sudo sbuild-adduser dinosaur
+cp /usr/share/doc/sbuild/examples/example.sbuildrc ~/.sbuildrc
+newgrp sbuild
 ```
+
+TODO
 
 to build for all architectures (amd64, armhf, and arm64):
 
 ```shell
-npm run build
+./build.sh
 ```
 
 will build into `./output` directory.
@@ -28,11 +34,11 @@ will build into `./output` directory.
 to build for a specific architecture:
 
 ```shell
-npm run build:amd64
+./build.sh --arch amd64
 ```
 
 to build for a specific package
 
 ```
-npm run build:amd64 -- peach-ssb-server
+./build.sh --package peach-upnp
 ```
