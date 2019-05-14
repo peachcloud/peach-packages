@@ -1,7 +1,6 @@
 #!/usr/bin/make -f
 
-LC_ALL := C.UTF-8
-export LC_ALL
+export PACKAGE=peach-upnp
 
 %:
 	dh $@

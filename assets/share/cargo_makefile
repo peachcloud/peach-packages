@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-prefix ?= /usr/local
+prefix ?= /usr
 DEBUG ?= 0
 TARGET = debug
 
@@ -22,5 +22,5 @@ distclean: clean
 install:
 	install -Dm0755 $(BINARY) $(DESTDIR)$(prefix)/bin/$(PACKAGE)
 
-$(BINARY): Cargo.lock Cargo.toml src/*.rs src/**/**/*.rs
-cargo build $(ARGS)
+$(BINARY): Cargo.lock Cargo.toml src/main.rs
+	cargo build $(ARGS)

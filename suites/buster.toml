@@ -2,7 +2,7 @@ archive = "buster"
 version = "10"
 origin = "peachcloud"
 label = "PeachCloud"
-email = "hello@peachcloud.org"
+email = "dev@peachcloud.org"
 
 # https://github.com/system76/cuda/blob/master/suites/bionic.toml
 
@@ -10,7 +10,7 @@ email = "hello@peachcloud.org"
 name = "peach-upnp"
 build_on = "changelog"
 assets = [
-   # { src = "cargo_makefile", dst = "Makefile" }
+   { src = "cargo_makefile", dst = "Makefile" }
 ]
 
   [source.location]

@@ -25,6 +25,6 @@ function update_submodules {
   git submodule update --init --recursive --remote
 }
 
-install_debrep
+#install_debrep
 update_submodules
 debrep build

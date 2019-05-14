@@ -19,17 +19,25 @@ sudo apt install sbuild
 sudo sbuild-adduser dinosaur
 cp /usr/share/doc/sbuild/examples/example.sbuildrc ~/.sbuildrc
 newgrp sbuild
+sudo sbuild-createchroot --include=eatmydata,ccache,gnupg buster /srv/chroot/buster-amd64-sbuild http://deb.debian.org/debian
+
+# TODO create an actual dev@peachcloud.org key
+gpg --full-generate-key
+# type: RSA + DSA
+# size: 4096
+# valid: always
+# name: PeachCloud Developers
+# email: dev@peachcloud.org
+# passphrase: 1234567890
 ```
 
-TODO
+TODO below:
 
 to build for all architectures (amd64, armhf, and arm64):
 
 ```shell
 ./build.sh
 ```
-
-will build into `./output` directory.
 
 to build for a specific architecture:
 
