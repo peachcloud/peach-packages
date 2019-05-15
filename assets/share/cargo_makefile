@@ -2,22 +2,29 @@
 
 prefix ?= /usr
 DEBUG ?= 0
-TARGET = debug
+MODE = debug
 
 ifeq (0,$(DEBUG))
-        ARGS += --release
-        TARGET = release
+  ARGS += --release
+  MODE = release
 endif
 
-BINARY=target/$(TARGET)/$(PACKAGE)
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+  ifeq ($(DEB_HOST_ARCH),arm64)
+    export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER = aarch64-linux-gnu-gcc
+    TARGET = aarch64-unknown-linux-gnu
+  endif
+
+  BINARY = target/$(TARGET)/$(MODE)/$(PACKAGE)
+  ARGS += --target=$(TARGET)
+else
+  BINARY = target/$(TARGET)/$(PACKAGE)
+endif
 
 all: $(BINARY)
 
 clean:
 	cargo clean
-
-distclean: clean
-	rm -rf .cargo vendor
 
 install:
 	install -Dm0755 $(BINARY) $(DESTDIR)$(prefix)/bin/$(PACKAGE)
