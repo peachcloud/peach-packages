@@ -2,13 +2,6 @@
 
 Debian packages for PeachCloud
 
-## packages
-
-- `peach-base`:
-  - setup `peach` user & group
-  - setup `/etc/peach` config directory
-  - setup `/var/lib/peach` state directory
-
 ## how to build
 
 ```shell
@@ -31,24 +24,4 @@ gpg --full-generate-key
 # name: PeachCloud Developers
 # email: dev@peachcloud.org
 # passphrase: 1234567890
-```
-
-TODO below:
-
-to build for all architectures (amd64, armhf, and arm64):
-
-```shell
-./build.sh
-```
-
-to build for a specific architecture:
-
-```shell
-./build.sh --arch amd64
-```
-
-to build for a specific package
-
-```
-./build.sh --package peach-upnp
 ```

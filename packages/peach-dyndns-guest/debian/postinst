@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# saner programming env: these switches turn some bugs into errors
-set -o errexit -o pipefail -o noclobber
-
-mkdir -p /etc/peach/dyndns/guest/hosts
-chown -R peach:peach /etc/peach/dyndns
-
-#DEBHELPER#

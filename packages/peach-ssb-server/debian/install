@@ -1,5 +1,0 @@
-package.json usr/lib/peach-ssb-server
-package-lock.json usr/lib/peach-ssb-server
-node_modules usr/lib/peach-ssb-server
-*.js usr/lib/peach-ssb-server
-plugins usr/lib/peach-ssb-server
