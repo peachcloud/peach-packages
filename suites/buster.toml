@@ -3,6 +3,12 @@ version = "10"
 origin = "peachcloud"
 label = "PeachCloud"
 email = "dev@peachcloud.org"
+architectures = [
+  "amd64",
+  "i386",
+  "arm64",
+  "armhf"
+]
 
 # https://github.com/system76/cuda/blob/master/suites/bionic.toml
 
