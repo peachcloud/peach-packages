@@ -13,6 +13,13 @@ architectures = [
 # https://github.com/system76/cuda/blob/master/suites/bionic.toml
 
 [[source]]
+name = "peach-base"
+build_on = "changelog"
+
+  [source.location]
+  git = "git://github.com/peachcloud/peach-base"
+
+[[source]]
 name = "peach-upnp"
 build_on = "changelog"
 assets = [
